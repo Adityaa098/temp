@@ -20,10 +20,6 @@ services:
     container_name: backend-dotnet
     ports:
       - "5230:5000"
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - MLService__TrainUrl=http://ml-service-python:8000/train
-      - MLService__PredictUrl=http://ml-service-python:8000/predict
     volumes:
       - ./IntelliInspect.Backend/Storage:/app/Storage
     depends_on:

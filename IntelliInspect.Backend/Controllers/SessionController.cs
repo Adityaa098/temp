@@ -67,7 +67,7 @@ namespace IntelliInspect.Backend.Controllers
         {
             Console.WriteLine("backend ko call karo ");
             var fastApiUrl =
-                _config["MLService:TrainUrl"] ?? "http://localhost:127.0.0.1:8000/train";
+                _config["MLService:TrainUrl"] ?? "http://localhost:8000/train";
 
             using var httpClient = new HttpClient
             {
