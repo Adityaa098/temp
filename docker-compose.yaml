@@ -1,4 +1,4 @@
-version: "3.8"
+# Removed version as it's obsolete in newer Docker Compose
 
 services:
   frontend-angular:
@@ -12,6 +12,8 @@ services:
       - backend-dotnet
     networks:
       - intelli-net
+    environment:
+      - API_URL=http://backend-dotnet:5000
 
   backend-dotnet:
     build:
@@ -21,11 +23,15 @@ services:
     ports:
       - "5230:5000"
     volumes:
-      - ./IntelliInspect.Backend/Storage:/app/Storage
+      - ./Storage:/app/Storage
     depends_on:
       - ml-service-python
     networks:
       - intelli-net
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:5000
+      - ML_SERVICE_URL=http://ml-service-python:8000
 
   ml-service-python:
     build:
@@ -35,10 +41,16 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./IntelliInspect.Backend/Storage:/app/Storage
+      - ./Storage:/app/Storage
     networks:
       - intelli-net
+    environment:
+      - PYTHONUNBUFFERED=1
+      - STORAGE_PATH=/app/Storage
 
 networks:
   intelli-net:
     driver: bridge
+
+volumes:
+  storage-volume:
