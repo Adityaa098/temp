@@ -1,0 +1,48 @@
+services:
+  frontend-angular:
+    image: adi2316/abb-hackathon:frontend
+    container_name: frontend-angular
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend-dotnet
+    networks:
+      - intelli-net
+    environment:
+      - API_URL=http://backend-dotnet:5000
+
+  backend-dotnet:
+    image: adi2316/abb-hackathon:backend
+    container_name: backend-dotnet
+    ports:
+      - "5230:5000"
+    volumes:
+      - storage-volume:/app/Storage
+    depends_on:
+      - ml-service-python
+    networks:
+      - intelli-net
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:5000
+      - ML_SERVICE_URL=http://ml-service-python:8000
+
+  ml-service-python:
+    image: adi2316/abb-hackathon:ml-service
+    container_name: ml-service-python
+    ports:
+      - "8000:8000"
+    volumes:
+      - storage-volume:/app/Storage
+    networks:
+      - intelli-net
+    environment:
+      - PYTHONUNBUFFERED=1
+      - STORAGE_PATH=/app/Storage
+
+networks:
+  intelli-net:
+    driver: bridge
+
+volumes:
+  storage-volume:
