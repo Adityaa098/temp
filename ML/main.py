@@ -13,7 +13,7 @@ import joblib
 app = FastAPI(title="ML Training API", version="1.0.0")
 
 # ✅ Define storage path globally
-STORAGE_PATH = os.path.abspath('../IntelliInspect.Backend/Storage')
+STORAGE_PATH = os.path.abspath('/app/Storage')
 
 @app.get("/")
 def root():

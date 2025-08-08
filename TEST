@@ -1,0 +1,3 @@
+curl -X POST http://localhost:5230/api/dataset/upload \
+  -F "file=C:/Users/Naghul/Downloads/first10k.csv" \
+  -H "Content-Type: multipart/form-data"

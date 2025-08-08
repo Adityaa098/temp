@@ -25,8 +25,9 @@ public class DatasetController : ControllerBase
             return BadRequest("Only CSV files are allowed.");
 
     
-        var storageDir = Path.Combine(Directory.GetCurrentDirectory(), "storage");
-        Directory.CreateDirectory(storageDir);
+        var storageDir = Path.Combine(Directory.GetCurrentDirectory(), "Storage");
+        Directory.CreateDirectory(sto
+        geDir);
 
         var rawPath = Path.Combine(storageDir, "raw.csv");
         var parsedPath = Path.Combine(storageDir, "parsed.csv");

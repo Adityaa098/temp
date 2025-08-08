@@ -5,6 +5,7 @@ services:
     build:
       context: ./IntelliInspect.Frontend
       dockerfile: Dockerfile
+    image: adi2316/abb-hackathon:frontend
     container_name: frontend-angular
     ports:
       - "4200:80"
@@ -19,6 +20,7 @@ services:
     build:
       context: ./IntelliInspect.Backend
       dockerfile: Dockerfile
+    image: adi2316/abb-hackathon:backend
     container_name: backend-dotnet
     ports:
       - "5230:5000"
@@ -30,13 +32,13 @@ services:
       - intelli-net
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
-      - ASPNETCORE_URLS=http://+:5000
       - ML_SERVICE_URL=http://ml-service-python:8000
 
   ml-service-python:
     build:
       context: ./ML
       dockerfile: Dockerfile
+    image: adi2316/abb-hackathon:ml-service
     container_name: ml-service-python
     ports:
       - "8000:8000"

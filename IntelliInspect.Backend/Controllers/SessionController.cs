@@ -11,7 +11,7 @@ namespace IntelliInspect.Backend.Controllers
         [HttpPost("ranges")]
         public IActionResult PostDateRanges([FromBody] DateRangeRequest request)
         {
-            var storageDir = Path.Combine(Directory.GetCurrentDirectory(), "storage");
+            var storageDir = Path.Combine(Directory.GetCurrentDirectory(), "Storage");
             var parsedCsvPath = Path.Combine(storageDir, "parsed.csv");
             var metadataPath = Path.Combine(storageDir, "metadata.json");
 
