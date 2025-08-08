@@ -26,8 +26,7 @@ public class DatasetController : ControllerBase
 
     
         var storageDir = Path.Combine(Directory.GetCurrentDirectory(), "Storage");
-        Directory.CreateDirectory(sto
-        geDir);
+        Directory.CreateDirectory(storageDir);
 
         var rawPath = Path.Combine(storageDir, "raw.csv");
         var parsedPath = Path.Combine(storageDir, "parsed.csv");
